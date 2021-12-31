@@ -13,9 +13,34 @@
 						</div>
 						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="login.html">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li>
-								<li class="menu-item lang-menu menu-item-has-children parent">
+                                @guest
+                                    <li class="menu-item" ><a title="Register or Login" href="/login">Login</a></li>
+                                    <li class="menu-item" ><a title="Register or Login" href="/register">Register</a></li>
+                                @endguest
+                                @auth
+                                <li class="menu-item">
+                                    <a href="#">
+                                        <img src={{ asset('uploads/user-img/' . Auth::user()->image) }} width="30"
+                                           class="rounded-circle border border-light border-2" style="height: 30px">
+                                       <span class="ps-2"> {{ \Str::limit(auth()->user()->name, 10) }}</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Log out" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        <i class="far fa-trash-alt"></i> log out
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                                @endauth
+
+
+
+
+								{{-- <li class="menu-item lang-menu menu-item-has-children parent">
 									<a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
 										<li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="assets/images/lang-hun.png" alt="lang-hun"></span>Hungary</a></li>
@@ -23,8 +48,8 @@
 										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="assets/images/lang-fra.png" alt="lang-fre"></span>French</a></li>
 										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li>
 									</ul>
-								</li>
-								<li class="menu-item menu-item-has-children parent" >
+								</li> --}}
+								{{-- <li class="menu-item menu-item-has-children parent" >
 									<a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu curency" >
 										<li class="menu-item" >
@@ -37,7 +62,7 @@
 											<a title="Dollar (USD)" href="#">Dollar (USD)</a>
 										</li>
 									</ul>
-								</li>
+								</li> --}}
 							</ul>
 						</div>
 					</div>

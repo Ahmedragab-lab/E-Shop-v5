@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+route::resource('/',Controllers\FrontController::class);
+
+route::resource('fronts',Controllers\FrontController::class);
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -16,6 +19,5 @@ route::resource('sections',Controllers\SectionController::class);
 route::resource('products',Controllers\ProductController::class);
 
 
-route::resource('fronts',Controllers\FrontController::class);
 
 require __DIR__.'/auth.php';

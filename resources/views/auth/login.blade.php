@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -53,4 +53,78 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+
+@extends('Front.frontlayout.master')
+@section('title')
+  login
+@endsection
+@section('css')
+
+@endsection
+@section('content')
+<main id="main" class="main-site left-sidebar">
+    <div class="container">
+        <div class="wrap-breadcrumb">
+            <ul>
+                <li class="item-link"><a href="#" class="link">home</a></li>
+                <li class="item-link"><span>login</span></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">
+                <div class=" main-content-area">
+                    <div class="wrap-login-item ">
+                        <div class="login-form form-item form-stl">
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <fieldset class="wrap-title">
+                                    <h3 class="form-title">Log in to your account</h3>
+                                </fieldset>
+                                <!-- Email Address -->
+                                <fieldset class="wrap-input">
+                                    <label for="frm-login-uname">Email Address:</label>
+                                    <input type="text" id="frm-login-uname" name="email" placeholder="Type your email address"
+                                            required autofocus>
+                                </fieldset>
+
+                                <!-- Password -->
+                                <fieldset class="wrap-input">
+                                    <label for="frm-login-pass">Password:</label>
+                                    <input type="password" id="frm-login-pass" name="password" placeholder="************"
+                                           required autocomplete="current-password">
+                                </fieldset>
+
+                                <!-- Remember Me -->
+                                <div class="block mt-4">
+                                    <label for="remember_me" class="inline-flex items-center">
+                                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center justify-end mt-4">
+                                    @if (Route::has('password.request'))
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                            {{ __('Forgot your password?') }}
+                                        </a>
+                                    @endif
+
+                                    <x-button class="ml-3 btn btn-submit">
+                                        {{ __('Log in') }}
+                                    </x-button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!--end main products area-->
+            </div>
+        </div><!--end row-->
+    </div><!--end container-->
+</main>
+<!--main area-->
+@endsection
+@section('js')
+
+@endsection
