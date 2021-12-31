@@ -47,12 +47,12 @@
                 <div class="wrap-banner style-twin-default">
                     <div class="banner-item">
                         <a href="#" class="link-banner banner-effect-1">
-                            <figure><img src="assets/images/home-1-banner-1.jpg" alt="" width="580" height="190"></figure>
+                            <figure><img src="{{ asset('assetsfront/images/home-1-banner-1.jpg') }}" alt="" width="580" height="190"></figure>
                         </a>
                     </div>
                     <div class="banner-item">
                         <a href="#" class="link-banner banner-effect-1">
-                            <figure><img src="assets/images/home-1-banner-2.jpg" alt="" width="580" height="190"></figure>
+                            <figure><img src="{{ asset('assetsfront/images/home-1-banner-2.jpg') }}" alt="" width="580" height="190"></figure>
                         </a>
                     </div>
                 </div>
@@ -62,11 +62,11 @@
                     <h3 class="title-box">On Sale</h3>
                     <div class="wrap-countdown mercado-countdown" data-expire="2020/12/12 12:34:56"></div>
                     <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
-
+                    @foreach (\App\Models\Product::where('status','1')->where('trending','1')->orderByDesc('id')->limit(10)->get() as $product)
                         <div class="product product-style-2 equal-elem ">
                             <div class="product-thumnail">
                                 <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                    <figure><img src="assets/images/products/tools_equipment_7.jpg" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                                    <figure><img src="{{ asset('uploads/product/' . $product->image) }}" width="800" height="800" alt="{{ $product->slug }}"></figure>
                                 </a>
                                 <div class="group-flash">
                                     <span class="flash-item sale-label">sale</span>
@@ -76,12 +76,13 @@
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-                                <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                                <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                <div class="wrap-price"><span class="product-price" style="color: rgb(190, 35, 35);"><s>{{ $product->original_price }}$</s></span></div>
+                                <div class="wrap-price"><span class="product-price" style="font-size:19px;">{{ $product->selling_price }}$</span></div>
                             </div>
                         </div>
-
-                        <div class="product product-style-2 equal-elem ">
+                    @endforeach
+                        {{-- <div class="product product-style-2 equal-elem ">
                             <div class="product-thumnail">
                                 <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                     <figure><img src="assets/images/products/digital_18.jpg" width="800" height="800" alt=""></figure>
@@ -205,7 +206,7 @@
                                 <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
                                 <div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
