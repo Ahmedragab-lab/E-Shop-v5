@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Front;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -44,9 +45,10 @@ class FrontController extends Controller
      * @param  \App\Models\Front  $front
      * @return \Illuminate\Http\Response
      */
-    public function show(Front $front)
+    public function show($id)
     {
-        //
+        $product = Product::findorfail($id);
+        return view('Front.product_details',compact('product'));
     }
 
     /**

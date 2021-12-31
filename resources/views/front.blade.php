@@ -65,18 +65,18 @@
                     @foreach (\App\Models\Product::where('status','1')->where('trending','1')->orderByDesc('id')->limit(10)->get() as $product)
                         <div class="product product-style-2 equal-elem ">
                             <div class="product-thumnail">
-                                <a href="detail.html" title="{{ $product->product_name }}">
+                                <a href="{{ route('fronts.show',$product->id) }}" title="{{ $product->product_name }}">
                                     <figure><img src="{{ asset('uploads/product/' . $product->image) }}" width="800" height="800" alt="{{ $product->slug }}"></figure>
                                 </a>
                                 <div class="group-flash">
                                     <span class="flash-item sale-label">sale</span>
                                 </div>
                                 <div class="wrap-btn">
-                                    <a href="#" class="function-link">quick view</a>
+                                    <a href="{{ route('fronts.show',$product->id) }}" class="function-link">quick view</a>
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                <a href="{{ route('fronts.show',$product->id) }}" class="product-name"><span>{{ $product->product_name }}</span></a>
                                 <div class="wrap-price"><span class="product-price" style="color: rgb(190, 35, 35);"><s>{{ $product->original_price }}$</s></span></div>
                                 <div class="wrap-price"><span class="product-price" style="font-size:19px;">{{ $product->selling_price }}$</span></div>
                             </div>
@@ -101,18 +101,18 @@
                                     @foreach (\App\Models\Product::latest()->limit(10)->get() as $product)
                                         <div class="product product-style-2 equal-elem ">
                                             <div class="product-thumnail">
-                                                <a href="#" title="{{ $product->product_name }}">
+                                                <a href="{{ route('fronts.show',$product->id) }}" title="{{ $product->product_name }}">
                                                     <figure><img src="{{ asset('uploads/product/' . $product->image) }}" width="800" height="800" alt="{{ $product->slug }}"></figure>
                                                 </a>
                                                 <div class="group-flash">
                                                     <span class="flash-item new-label">new</span>
                                                 </div>
                                                 <div class="wrap-btn">
-                                                    <a href="#" class="function-link">quick view</a>
+                                                    <a href="{{ route('fronts.show',$product->id) }}" class="function-link">quick view</a>
                                                 </div>
                                             </div>
                                             <div class="product-info">
-                                                <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                                <a href="{{ route('fronts.show',$product->id) }}" class="product-name"><span>{{ $product->product_name }}</span></a>
                                                 <div class="wrap-price"><span class="product-price" style="color: rgb(190, 35, 35);"><s>{{ $product->original_price }}$</s></span></div>
                                                 <div class="wrap-price"><span class="product-price" style="font-size:19px;">{{ $product->selling_price }}$</span></div>
                                             </div>
@@ -147,18 +147,18 @@
                                             @foreach ( $section->products as $product)
                                                 <div class="product product-style-2 equal-elem ">
                                                     <div class="product-thumnail">
-                                                        <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                                        <a href="{{ route('fronts.show',$product->id) }}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                                             <figure><img src="{{ asset('uploads/product/' . $product->image) }}" width="800" height="800" alt="{{ $product->slug }}"></figure>
                                                         </a>
                                                         <div class="group-flash">
                                                             <span class="flash-item new-label">new</span>
                                                         </div>
                                                         <div class="wrap-btn">
-                                                            <a href="#" class="function-link">quick view</a>
+                                                            <a href="{{ route('fronts.show',$product->id) }}" class="function-link">quick view</a>
                                                         </div>
                                                     </div>
                                                     <div class="product-info">
-                                                        <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                                        <a href="{{ route('fronts.show',$product->id) }}" class="product-name"><span>{{ $product->product_name }}</span></a>
                                                         <div class="wrap-price"><span class="product-price" style="color: rgb(190, 35, 35);"><s>{{ $product->original_price }}$</s></span></div>
                                                         <div class="wrap-price"><span class="product-price" style="font-size:19px;">{{ $product->selling_price }}$</span></div>
                                                     </div>
