@@ -98,7 +98,7 @@
                             <div class="tab-contents">
                                 <div class="tab-content-item active" id="digital_1a">
                                     <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}' >
-                                    @foreach (\App\Models\Product::where('status','1')->where('trending','1')->orderByDesc('id')->limit(10)->get() as $product)
+                                    @foreach (\App\Models\Product::latest()->limit(10)->get() as $product)
                                         <div class="product product-style-2 equal-elem ">
                                             <div class="product-thumnail">
                                                 <a href="#" title="{{ $product->product_name }}">
@@ -137,7 +137,7 @@
                         <div class="wrap-product-tab tab-style-1">
                             <div class="tab-control">
                                 @foreach (\App\Models\Section::where('status','1')->where('popular','1')->orderByDesc('id')->limit(10)->get() as $key => $section)
-                                <a href="#{{ $section->id }}" class="tab-control-item {{ $key==0 ? 'active' : ''}} ">{{ $section->section_name }}</a>
+                                <a href="#{{ $section->id }}" class="tab-control-item {{ $key==0 ? 'active' : ''}} ">{!! $section->section_name !!}</a>
                                 @endforeach
                             </div>
                             <div class="tab-contents">
@@ -158,8 +158,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-info">
-                                                        <a href="#" class="product-name"><span>Lois Caron LCS-4027 Analog Watch - For Men</span></a>
-                                                        <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                                                        <a href="#" class="product-name"><span>{{ $product->product_name }}</span></a>
+                                                        <div class="wrap-price"><span class="product-price" style="color: rgb(190, 35, 35);"><s>{{ $product->original_price }}$</s></span></div>
+                                                        <div class="wrap-price"><span class="product-price" style="font-size:19px;">{{ $product->selling_price }}$</span></div>
                                                     </div>
                                                 </div>
                                             @endforeach
