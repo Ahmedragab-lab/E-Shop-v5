@@ -18,11 +18,7 @@ class CartController extends Controller
         return view('Front.mycart',compact('cartitems','products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -116,4 +112,49 @@ class CartController extends Controller
                 return response()->json(['status'=>'Login to continue']);
             }
         }
+
+
+         //ajax request from  my cart page delete item from cart ================================\\//
+    public function delete_item(Request $request){
+        $product_id = $request->input('prod_id');
+        if(Auth::check()){
+            if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists()){
+                $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+                $cart->delete();
+                return response()->json(['status'=>' product deleted successfully']);
+            }
+        }else{
+            return response()->json(['status'=>'Login to continue']);
+        }
+    }
+   // End ajax request from  my cart page delete item from cart ================================\\//
+
+     // update quantity from my cart page by ajax ================================\\//
+     public function update_qty(Request $request){
+        $product_id = $request->input('prod_id');
+        $product_qty = $request->input('prod_qty');
+        // $qty=Product::where('id',$product_id)->select('qty')->first();
+        $validator = Validator::make($request->all(),
+        [
+            'prod_qty'=> 'required|numeric|min:1'
+        ]);
+        if ($validator->fails())
+        {
+            return response()->json(['status'=>$validator->errors()->first()]);
+            // return redirect()->back()->with('status',$validator->errors()->first());
+        }
+        else{
+            if(Auth::check()){
+                if(Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->exists())
+                {
+                    $cart = Cart::where('prod_id',$product_id)->where('user_id',Auth::id())->first();
+                    $cart->prod_qty = $product_qty;
+                    $cart->update();
+                    return response()->json(['status'=>' Quantity updated successfully']);
+                    // return redirect()->route('checkout.index')->with('status',"You can order now");
+                }
+            }
+        }
+     }
+   // End update quantity from my cart page by ajax ================================\\//
 }
