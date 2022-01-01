@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers;
 
-route::resource('/',Controllers\FrontController::class);
+Route::resource('/',Controllers\FrontController::class);
 
-route::resource('fronts',Controllers\FrontController::class);
 
+Route::resource('fronts',Controllers\FrontController::class);
+Route::middleware(['auth'])->group(function(){
+    Route::post('/addtocart', [Controllers\CartController::class,'addtocart'])->name('addtocart');         // send request from product-details page by ajax
+});
 
 
 
@@ -15,8 +18,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-route::resource('sections',Controllers\SectionController::class);
-route::resource('products',Controllers\ProductController::class);
+Route::resource('sections',Controllers\SectionController::class);
+Route::resource('products',Controllers\ProductController::class);
 
 
 

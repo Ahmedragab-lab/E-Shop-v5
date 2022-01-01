@@ -3,7 +3,7 @@
   empty
 @endsection
 @section('css')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
 <!--main area-->
@@ -66,18 +66,18 @@
                         <div class="stock-info in-stock">
                             <p class="availability">Availability: <b>{{ $product->qty > 0 ?'In Stock' :'Out Of Stock'}}</b></p>
                         </div>
-                        <div class="quantity">
+
+                        <div class="quantity product_data">
                             <span>Quantity:</span>
                             <div class="quantity-input" style="width:74px;">
+                                <input type="hidden" value="{{ $product->id }}" class="prod_id" name="prod_id">
                                 <input type="number" name="product-quatity" value="1" data-max="120" pattern="[0-9]*"
-                                       onkeydown="return false" min="1" max="{{ $product->qty }}">
-
-                                {{-- <a class="btn btn-reduce" href="#"></a> --}}
-                                {{-- <a class="btn btn-increase" href="#"></a> --}}
+                                       onkeydown="return false" min="1" max="{{ $product->qty }}"
+                                       name="prod_qty" class="qty_input" id="xxx" >
                             </div>
                         </div>
                         <div class="wrap-butons">
-                            <a href="#" class="btn add-to-cart">Add to Cart</a>
+                            <a href="#" class="btn add-to-cart addtocartbtn">Add to Cart</a>
                             <div class="wrap-btn">
                                 <a href="#" class="btn btn-compare">Add Compare</a>
                                 <a href="#" class="btn btn-wishlist">Add Wishlist</a>
@@ -459,5 +459,35 @@
 <!--main area-->
 @endsection
 @section('js')
-
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+        $(document).ready(function(){
+            $('.addtocartbtn').click(function(e){
+                e.preventDefault();
+                var prod_id  = $('input[name="prod_id"]').val();
+                // var prod_qty = $('input[name="prod_qty"]').val();
+                var prod_qty  =  $('#xxx').val();
+                console.log(prod_id);
+                console.log(prod_qty);
+                $.ajax({
+                    method:"POST",
+                    url: "/addtocart",
+                    data: {
+                        'prod_id': prod_id,
+                        'prod_qty': prod_qty,
+                    },
+                    success: function(response) {
+                    alert(response.status);
+                    },
+                    error: function(response) {
+                    alert(response.status);
+                    }
+                });
+            });
+        });
+</script>
 @endsection
