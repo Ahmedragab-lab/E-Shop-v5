@@ -9,6 +9,7 @@ Route::resource('/',Controllers\FrontController::class);
 
 Route::resource('fronts',Controllers\FrontController::class);
 Route::middleware(['auth'])->group(function(){
+    Route::resource('mycart',Controllers\CartController::class);
     Route::post('/addtocart', [Controllers\CartController::class,'addtocart'])->name('addtocart');         // send request from product-details page by ajax
 });
 
