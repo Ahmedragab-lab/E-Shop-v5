@@ -23,36 +23,36 @@
                         <h3 class="box-title">client information</h3>
                         <p class="row-in-form">
                             <label for="fname"> name<span>*</span></label>
-                            <input id="fname" type="text" name="name"  value="{{ Auth::user()->name }}" readonly>
+                            <input id="fname" type="text" name="fname"  value="{{ Auth::user()->name }}" readonly>
                         </p>
-                        {{-- <p class="row-in-form">
+                        <p class="row-in-form">
                             <label for="lname">last name<span>*</span></label>
                             <input id="lname" type="text" name="lname" value="" placeholder="Your last name">
-                        </p> --}}
+                        </p>
                         <p class="row-in-form">
                             <label for="email">Email Addreess:</label>
                             <input id="email" type="email" name="email" value="{{ Auth::user()->email }}" placeholder="Type your email" readonly>
                         </p>
-                        {{-- <p class="row-in-form">
+                        <p class="row-in-form">
                             <label for="phone">Phone number<span>*</span></label>
-                            <input id="phone" type="number" name="phone" value="" placeholder="10 digits format">
-                        </p> --}}
-                        {{-- <p class="row-in-form">
+                            <input id="phone" type="text" name="phone" value="" placeholder="10 digits format">
+                        </p>
+                        <p class="row-in-form">
                             <label for="add">Address:</label>
-                            <input id="add" type="text" name="add" value="" placeholder="Street at apartment number">
-                        </p> --}}
-                        {{-- <p class="row-in-form">
+                            <input id="add" type="text" name="address" value="" placeholder="Street at apartment number">
+                        </p>
+                        <p class="row-in-form">
                             <label for="country">Country<span>*</span></label>
                             <input id="country" type="text" name="country" value="" placeholder="United States">
-                        </p> --}}
+                        </p>
                         {{-- <p class="row-in-form">
                             <label for="zip-code">Postcode / ZIP:</label>
                             <input id="zip-code" type="number" name="zip-code" value="" placeholder="Your postal code">
                         </p> --}}
-                        {{-- <p class="row-in-form">
+                        <p class="row-in-form">
                             <label for="city">Town / City<span>*</span></label>
                             <input id="city" type="text" name="city" value="" placeholder="City name">
-                        </p> --}}
+                        </p>
                         {{-- <p class="row-in-form fill-wife">
                             <label class="checkbox-field">
                                 <input name="create-account" id="create-account" value="forever" type="checkbox">
