@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace {{ namespace }};
 
-use App\Models\Cart;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ namespacedRequests }}
 
-class CheakoutController extends Controller
+class {{ class }} extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class CheakoutController extends Controller
      */
     public function index()
     {
-        $cartitems= Cart::where('user_id',Auth::id())->get();
-        return view('Front.checkout',compact('cartitems'));
+        //
     }
 
     /**
@@ -32,21 +31,21 @@ class CheakoutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \{{ namespacedStoreRequest }}  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store({{ storeRequest }} $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show({{ model }} ${{ modelVariable }})
     {
         //
     }
@@ -54,10 +53,10 @@ class CheakoutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit({{ model }} ${{ modelVariable }})
     {
         //
     }
@@ -65,11 +64,11 @@ class CheakoutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \{{ namespacedUpdateRequest }}  $request
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
     {
         //
     }
@@ -77,10 +76,10 @@ class CheakoutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy({{ model }} ${{ modelVariable }})
     {
         //
     }
