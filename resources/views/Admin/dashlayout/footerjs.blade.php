@@ -10,6 +10,7 @@
         <script src="{{ asset('assets/en/js/waves.js') }}"></script>
         <script src="{{ asset('assets/en/js/jquery.nicescroll.js') }}"></script>
         <script src="{{ asset('assets/en/js/jquery.scrollTo.min.js') }}"></script>
+        <script src="{{ asset('assets/jquery.number.min.js') }}"></script>
         @toastr_js
         @toastr_render
         <!--Morris Chart-->

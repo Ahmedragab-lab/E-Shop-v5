@@ -23,6 +23,8 @@ Route::get('/dashboard', function () {
 
 Route::resource('sections',Controllers\SectionController::class);
 Route::resource('products',Controllers\ProductController::class);
+Route::resource('clients',Controllers\ClientController::class);
+Route::resource('orderdash',Controllers\OrderdashController::class);
 
 
 

@@ -23,5 +23,12 @@
             </ul>
         </li>
 
+        <li>
+            <a href="{{ route('clients.index') }}" class="waves-effect">
+                <i class="fas fa-users"></i>
+                <span> Clients </span>
+            </a>
+        </li>
+
     </ul>
 </div>
