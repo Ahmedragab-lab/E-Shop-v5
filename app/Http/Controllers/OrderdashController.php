@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Orderdash;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderdashController extends Controller
@@ -33,9 +35,35 @@ class OrderdashController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function order(Request $request , $id)
     {
-        return "hello";
+        // dd($id);
+        // dd($request->all());
+        $request->validate([
+            'products'=>'required|array',
+            'q'=>'required|array',
+        ]);
+        // $order = Orderdash::create([]);
+        $client = Client::findorfail($id);
+        $order = $client->orders()->create([]);   // create order in orderdash table client and total
+        $total = 0;
+
+        foreach( $request->products as $index=>$product_id){
+            $product = Product::findorfail($product_id);
+            $order->products()->attach($product,['quantity'=>$request->q[$index]]);  // create order qty in product_order pivot table
+            $total += $product->selling_price * $request->q[$index];
+        } //end foreach
+
+        $product->update([
+            'qty'=>$product->qty - $request->q[$index] ,
+        ]);
+
+        $order->update([
+            'total'=>$total ,
+        ]);
+
+        toastr()->success(__('order done successfully'));
+        return redirect()->route('clients.index');
     }
 
     /**

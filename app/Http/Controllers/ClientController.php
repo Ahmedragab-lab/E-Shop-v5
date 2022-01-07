@@ -57,6 +57,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
+        // dd($id);
         $client=Client::findorfail($id);
         // $sections = Section::with('products')->get();
         // dd($sections);

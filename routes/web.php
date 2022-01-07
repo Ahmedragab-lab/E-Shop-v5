@@ -25,6 +25,7 @@ Route::resource('sections',Controllers\SectionController::class);
 Route::resource('products',Controllers\ProductController::class);
 Route::resource('clients',Controllers\ClientController::class);
 Route::resource('orderdash',Controllers\OrderdashController::class);
+Route::post('orderdash/{id}',[Controllers\OrderdashController::class,'order'])->name('order');
 
 
 

@@ -15,6 +15,8 @@ class CreateOrderdashesTable extends Migration
     {
         Schema::create('orderdashes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
+            $table->double('total',8,2)->nullable();
             $table->timestamps();
         });
     }

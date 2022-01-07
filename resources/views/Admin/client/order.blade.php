@@ -76,7 +76,7 @@
 
      <div class="col-xl-6 mb-30">
         <div class="card card-statistics h-100">
-            <form action="{{ route('orderdash.store') }}" method="POST">
+            <form action="{{ route('order', $client) }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <h5 class="card-title border-0 pb-0">Orders</h5>
