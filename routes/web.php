@@ -27,6 +27,7 @@ Route::resource('clients',Controllers\ClientController::class);
 Route::resource('orderdash',Controllers\OrderdashController::class);
 Route::post('orderdash/{id}',[Controllers\OrderdashController::class,'order'])->name('order');
 
+Route::resource('theorders',Controllers\OrderController::class);
 
 
 require __DIR__.'/auth.php';
